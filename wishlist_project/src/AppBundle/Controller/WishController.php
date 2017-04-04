@@ -16,13 +16,30 @@ class WishController extends Controller
      * @Template()
      * @Route("/wishes", name="wishes_index")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $wishes = $this->get('doctrine')->
         getRepository('AppBundle:Wish')->
         findBy(array(),array('created' => 'DESC'));
 
-        return ['wishes' => $wishes];
+        $form = $this->createForm(WishType::class);
+        $form->add('submit', SubmitType::class, array(
+            'attr' => array('class' => 'btn btn-primary')));
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $wish = $form->getData();
+            $em = $this->get('doctrine')->getManager();
+
+            $em->persist($wish);
+            $em->flush();
+
+            $this->addFlash('success','Congratulations! The article has added!');
+            return $this->redirectToRoute('wishes_index');
+        }
+
+        return ['form' => $form->createView(), 'wishes' => $wishes];
 
     }
 

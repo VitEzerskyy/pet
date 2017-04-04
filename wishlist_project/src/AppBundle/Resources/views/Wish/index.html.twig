@@ -2,10 +2,14 @@
 
 {% block body %}
    <h1>Wishes or plans</h1>
-   {#<div style="width: 50%">#}
-
-      {#{{ form(form) }}#}
-   {#</div>#}
+   <p><a href="#" class="btn btn-success" id="add_item">Add new</a></p>
+   <p>
+      {{ form_start(form, {'attr':{'class':'form-inline', 'hidden':''}}) }}
+      {{ form_widget(form.title, {'attr':{'class':'form-control', 'placeholder':'Add title'}}) }}
+      {{ form_widget(form.wish, {'attr':{'class':'form-control', 'placeholder':'Add wish'}}) }}
+      {{ form_widget(form.status, {'attr':{'disabled':'disabled', 'class':'form-control'}}) }}
+      {{ form_end(form, {'attr':{'class':'form-inline'}}) }}
+</p>
    <table class="table table-striped">
       <tr>
          <th>Title</th>
@@ -26,3 +30,5 @@
       {% endfor %}
    </table>
 {% endblock %}
+
+{% block javascripts %} <script src="{{ asset('bundles/app/js/add_wish.js') }}"></script> {% endblock %}
