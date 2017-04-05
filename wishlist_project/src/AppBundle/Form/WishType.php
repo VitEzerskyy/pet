@@ -2,7 +2,7 @@
 
 namespace AppBundle\Form;
 
-use Doctrine\DBAL\Types\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,12 +17,13 @@ class WishType extends AbstractType
     {
         $builder->
         add('title')->
-        add('wish', \Symfony\Component\Form\Extension\Core\Type\TextType::class)->
+        add('wish', TextType::class)->
         add('status', ChoiceType::class, array(
             'choices'  => array(
         'Not done' => false,
         'Done' => true
     ),
+
 ));
     }
     

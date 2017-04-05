@@ -35,7 +35,7 @@ class WishController extends Controller
             $em->persist($wish);
             $em->flush();
 
-            $this->addFlash('success','Congratulations! The article has added!');
+            $this->addFlash('success','Congratulations! The wish has added!');
             return $this->redirectToRoute('wishes_index');
         }
 

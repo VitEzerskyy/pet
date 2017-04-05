@@ -45,7 +45,7 @@ class Wish
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created", type="date")
+     * @ORM\Column(name="created", type="datetimetz")
      */
     private $created;
 
