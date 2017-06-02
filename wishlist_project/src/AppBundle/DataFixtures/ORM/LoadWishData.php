@@ -13,7 +13,7 @@ class LoadWishData implements FixtureInterface, ContainerAwareInterface
     use ContainerAwareTrait;
     public function load(ObjectManager $manager)
     {
-        $jsonFile =  $this->container->getParameter('kernel.root_dir')."/../var/data/wishes.json";
+        $jsonFile =  $this->container->getParameter('kernel.root_dir')."/../wishes.json";
         $json = json_decode(file_get_contents($jsonFile));
 
         foreach ($json as $value) {
